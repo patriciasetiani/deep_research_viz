@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Interactive Visualization for Deep Research Prompt Refinement</title>
+
+  <link rel="stylesheet" href="./files/bulma.min.css">
+  <link rel="stylesheet" href="./files/styles.css">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="./files/css2" rel="stylesheet">
+  <link href="./files/css" rel="stylesheet">
+
+  <base href="." target="_blank">
+</head>
+
+<body>
+
+<div class="wrapper">
+  <h1>Interactive Visualization for Deep Research Prompt Refinement</h1>
+  <h4>CSCI 5541: Natural Language Processing — Fall 2025</h4>
+  <h4>University of Minnesota</h4>
+  <h4>Team Adamnn</h4>
+
+  <div class="authors-wrapper">
+
+    <div class="author-container">
+      <div class="author-image"><img src="./files/mauricio.jpg"></div>
+      <p>Mauricio Villavicencio</p>
+    </div>
+
+    <div class="author-container">
+      <div class="author-image">
+        <img src="./files/chris.jpg" alt="Christopher Hardwick">
+      </div>
+      <p>Christopher Hardwick</p>
+    </div>
+
+    <div class="author-container">
+      <div class="author-image"><img src=""></div>
+      <p>Patricia Setiani</p>
+    </div>
+
+    <div class="author-container">
+      <div class="author-image"><img src=""></div>
+      <p>Anurag Purohit</p>
+    </div>
+
+  </div>
+
+  <br>
+
+  <div class="authors-wrapper">
+  <div class="publication-links">
+
+    <span class="link-block">
+      <a
+        href="./final_report.pdf"
+        target="_blank"
+        class="button is-rounded is-dark is-outlined"
+      >
+        Final Report
+      </a>
+    </span>
+
+    <span class="link-block">
+      <a
+        href="https://github.com/maurilaparva/deep_research_visualization"
+        target="_blank"
+        class="button is-rounded is-dark is-outlined"
+      >
+        Code
+      </a>
+    </span>
+
+  </div>
+</div>
+
+<div class="wrapper">
+<hr>
+
+<h2 id="abstract">Abstract</h2>
+<p>
+Researchers increasingly use ChatGPT’s Deep Research to explore literature and form hypotheses,
+yet many struggle to craft prompts that balance breadth and depth. Broad prompts yield shallow
+overviews, while narrow ones miss relevant perspectives. We propose an interactive visualization
+that scaffolds prompt refinement for Deep Research. The tool classifies user intent, flags missing
+constraints (e.g., evidence, scope, comparisons), and provides diagnostic signals about prompt
+scope and specificity while tracking how edits shift predicted response quality. A small open-source
+model powers critique and dual prompt rewrites; users then send only the finalized prompt to Deep
+Research. We evaluated the system in a within-subjects user study (N = 10), measuring perceived
+quality gains, prompt refinement efficiency, and user understanding of prompt effects.
+</p>
+
+<hr>
+
+<h2>Visualization Figures</h2>
+<p>Final visualization prototype for Deep Research prompt refinement.</p>
+
+<img src="./files/updated-vis.png" width="1080"
+     style="border:2px solid #333; border-radius:4px;">
+
+<p style="margin-top:1em; font-style:italic;">
+Earlier prototype shown below for comparison.
+</p>
+
+<img src="./files/viz_screenshot.png" width="900"
+     style="border:1px solid #aaa; border-radius:4px;">
+
+<hr>
+
+<h2 id="introduction">1. Introduction</h2>
+<p>
+Deep Research modes in modern LLMs support multi-step, evidence-based investigation, but their
+outputs are highly sensitive to prompt quality. Users frequently struggle to specify scope, intent,
+and constraints, resulting in unfocused reports and costly trial-and-error. Current interfaces provide
+little feedback on how prompt wording influences downstream reasoning.
+</p>
+
+<p>
+We address this gap by introducing a pre-run visualization system that helps users understand and
+refine prompts before executing long-running Deep Research queries. By making prompt structure,
+constraints, and predicted quality effects visible, our system supports more effective and efficient
+use of Deep Research tools.
+</p>
+
+<hr>
+
+<h2 id="approach">2. Approach</h2>
+<p>
+Our system analyzes a user’s prompt using a lightweight, deterministic LLM and extracts structured
+signals including inferred intent, detected and missing constraints, and predicted quality metrics
+(Depth, Breadth, Coherence, Relevance). These signals are visualized to support iterative refinement
+without executing the expensive research query.
+</p>
+
+<hr>
+
+<h2 id="visualization">3. Visualization Development</h2>
+
+<h3>3.1 Visualization Goals</h3>
+<p>
+Unlike prior prompt-engineering tools designed for rapid iteration, our system targets long-running,
+high-cost workflows. The goal is to provide pre-run diagnosis rather than post-hoc evaluation, helping
+users anticipate depth–breadth trade-offs and missing requirements.
+</p>
+
+<h3>3.2 Final Design</h3>
+<p>
+The final interface presents a linear prompt version history, quality metrics with deltas between
+versions, constraint badges, and ranked refinement suggestions. These elements allow users to see
+how edits affect predicted research outcomes before execution.
+</p>
+
+<hr>
+
+<h2 id="evaluation">4. Evaluation</h2>
+<p>
+We conducted a within-subjects user study with 10 university researchers. Each participant completed
+tasks using (1) baseline Deep Research, (2) our tool with Deep Research, and (3) a base LLM interface.
+We collected quantitative ratings and qualitative feedback.
+</p>
+
+<hr>
+
+<h2 id="results">5. Results</h2>
+
+<p>
+Across participants, quantitative ratings indicated higher perceived success when using our tool,
+along with high satisfaction and perceived usefulness. Qualitative feedback highlighted the value
+of actionable suggestions and prompt versioning.
+</p>
+
+<h3>5.1 Quantitative Results</h3>
+
+<table class="table is-bordered is-striped is-hoverable is-fullwidth">
+<thead>
+<tr>
+<th>Measure (1–10)</th>
+<th>Mean ± SD</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Success (baseline)</td><td>6.8 ± 1.5</td></tr>
+<tr><td>Success (with tool)</td><td>8.9 ± 1.1</td></tr>
+<tr><td>Satisfaction (with tool)</td><td>8.7 ± 1.4</td></tr>
+<tr><td>Usefulness for improvement</td><td>8.6 ± 1.2</td></tr>
+<tr><td>Understanding prompt effects</td><td>8.6 ± 1.3</td></tr>
+<tr><td>Ease (baseline)</td><td>6.4 ± 1.6</td></tr>
+<tr><td>Ease (with tool)</td><td>7.6 ± 1.6</td></tr>
+<tr><td>Mental demand (baseline)</td><td>5.8 ± 2.0</td></tr>
+<tr><td>Mental demand (with tool)</td><td>4.7 ± 2.3</td></tr>
+</tbody>
+</table>
+
+<h3>5.2 Qualitative Findings</h3>
+<p>
+Participants valued the concrete refinement suggestions and prompt versioning most strongly.
+Depth and Breadth metrics were frequently cited as helpful for orienting intent, while several users
+requested improved metric explainability and onboarding.
+</p>
+
+<hr>
+
+<h2 id="conclusion">6. Conclusion</h2>
+<p>
+We presented an interactive visualization system for pre-run prompt refinement in Deep Research
+workflows. Our findings suggest that making prompt structure and predicted effects visible can
+reduce trial-and-error, improve perceived success, and support more efficient research workflows.
+Future work includes improving metric attribution, supporting controllable prompt rewrites, and
+evaluating the system with broader populations.
+</p>
+
+</div>
+
+</body>
+</html>
